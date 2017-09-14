@@ -1,0 +1,9 @@
+# Resource Server (RS)
+
+This server is a standalone server to offer open APIs 
+to clients.
+
+
+## Documentation
+
+NOT YET
