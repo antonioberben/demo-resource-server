@@ -130,6 +130,7 @@ fabric.properties
 
 /application/target
 /library/target
-/docker-compose/authorization-server/
-/docker-compose/
-/application/src/main/resources/application.yml
+
+
+## User defined
+

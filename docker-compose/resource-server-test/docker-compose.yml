@@ -1,0 +1,24 @@
+version: '2'
+services:
+
+  resource_server_test_mongo_admin:
+    container_name: resource_server_test_mongo_admin
+    image: mongo-express:0.38
+    env_file:
+     - ./docker-compose.env
+    links:
+      - "resource_server_test_mongo_db"
+    ports:
+      - "11011:8081"
+
+
+  resource_server_test_mongo_db:
+    container_name: resource_server_test_mongo_db
+    image: mongo:latest
+    env_file:
+     - ./docker-compose.env
+    ports:
+      - "11012:27017"
+    volumes:
+      - "./data/test-mongo:/data/db"
+    command: mongod --auth
