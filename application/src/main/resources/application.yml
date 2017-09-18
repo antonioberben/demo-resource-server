@@ -1,0 +1,57 @@
+#default project info followed by actual injected pom-specified values.
+project:
+  name: "Demo"
+  version: 0.0.1
+  description: "Test project"
+
+server:
+  port: 8090
+
+#management endpoints on a separate port
+management:
+  port: 8091
+  security:
+    enabled: false # management port is internal only. no need to secure it.
+  health:
+    mongo:
+      enabled: true
+
+security:
+  basic:
+    enabled: false
+
+info:
+  app:
+    encoding: ${project.build.sourceEncoding}
+    java.source: ${java.version}
+    java.target: ${java.version}
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+
+#mongodb
+spring:
+  application:
+    name: demo
+  data:
+    mongodb:
+      host: ${DEMO_RS_DATASOURCE_HOST}
+      port: ${DEMO_RS_DATASOURCE_PORT}
+      database: ${DEMO_RS_DATASOURCE_DB}
+      password: ${DEMO_RS_DATASOURCE_PASSWORD}
+      username: ${DEMO_RS_DATASOURCE_USERNAME}
+  metrics:
+    export:
+      statsd:
+        prefix: rs-demo-${HOSTNAME}
+        host: ${DEMO_RS_METRICS_HOST}
+        port: ${DEMO_RS_METRICS_PORT}
+
+#logging
+logging:
+  level:
+    root: info
+    org.springframework.data: info
+    # org.springframework.boot.actuate.metrics: TRACE

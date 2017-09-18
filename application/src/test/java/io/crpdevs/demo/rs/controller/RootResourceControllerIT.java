@@ -1,11 +1,9 @@
 package io.crpdevs.demo.rs.controller;
 
-import io.crpdevs.demo.rs.RSApplication;
 import org.json.JSONException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -13,12 +11,20 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import io.crpdevs.demo.rs.RSApplication;
+import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-    classes = RSApplication.class,
-    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+    classes = RSApplication.class)
+@TestPropertySource("/test.properties")
 public class RootResourceControllerIT {
 
     @LocalServerPort
@@ -30,17 +36,20 @@ public class RootResourceControllerIT {
 
     @Test
     @DisplayName("Test 'findAll' : SUCCESS")
-    public void testFindAllRootResource() throws JSONException {
+    public void testFindAllRootResource() {
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
-        ResponseEntity<String> response = restTemplate.exchange(
-            createURLWithPort("/students/Student1/courses/Course1"),
-            HttpMethod.GET, entity, String.class);
+        ResponseEntity<RootResourceOutput> response = restTemplate.exchange(
+            createURLWithPort("/api/root-resources"),
+            HttpMethod.GET, entity, RootResourceOutput.class);
 
-        String expected = "{id:Course1,name:Spring,description:10 Steps}";
+        RootResourceOutput expected = new RootResourceOutput();
+        expected.setName("test");
 
-        JSONAssert.assertEquals(expected, response.getBody(), false);
+        assertAll("Returns",
+            () -> assertThat(expected).isEqualToComparingFieldByField(response.getBody())
+        );
     }
 
     private String createURLWithPort(String uri) {
