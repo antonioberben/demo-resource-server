@@ -43,6 +43,7 @@
         <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
         <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
         <junit-jupiter-engine.version>5.0.0-M5</junit-jupiter-engine.version>
+        <cucumber-java.version>1.2.5</cucumber-java.version>
     </properties>
 
     <dependencyManagement>
@@ -214,6 +215,15 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+
+        <!-- Spring - Cucumber -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
 
     </dependencies>
