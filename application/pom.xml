@@ -7,7 +7,7 @@
     <groupId>io.crpdevs.demo.rs</groupId>
     <artifactId>demo-resource-server-application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
 
     <parent>
@@ -37,6 +37,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

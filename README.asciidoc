@@ -7,3 +7,15 @@ to clients.
 ## Documentation
 
 NOT YET
+
+
+Add following environment variables to your intelliJ:
+
+---
+DEMO_RS_METRICS_PORT
+DEMO_RS_DATASOURCE_HOST
+DEMO_RS_DATASOURCE_PORT
+DEMO_RS_DATASOURCE_DB
+DEMO_RS_DATASOURCE_PASSWORD
+DEMO_RS_DATASOURCE_USERNAME
+---
