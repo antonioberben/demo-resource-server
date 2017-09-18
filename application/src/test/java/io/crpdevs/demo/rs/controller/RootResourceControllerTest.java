@@ -1,44 +1,36 @@
 package io.crpdevs.demo.rs.controller;
 
-import io.crpdevs.demo.rs.RSApplication;
-import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import io.crpdevs.demo.rs.RSApplication;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
     classes = { RSApplication.class },
-        webEnvironment = WebEnvironment.DEFINED_PORT)
-@TestPropertySource(properties = "server.port=8080")
+        webEnvironment = WebEnvironment.RANDOM_PORT)
 public class RootResourceControllerTest {
 
     @LocalServerPort
-    private int port;
+    private int serverPort;
 
     TestRestTemplate restTemplate = new TestRestTemplate();
 
-    HttpHeaders headers = new HttpHeaders();
+    //HttpHeaders headers = new HttpHeaders();
 
-    @DisplayName("Test 'findAll' : SUCCESS")
+    //@DisplayName("Test 'findAll' : SUCCESS")
     @Test
-    void testFindAllRootResource() {
+    public void testFindAllRootResource() {
 
         //HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
@@ -46,7 +38,7 @@ public class RootResourceControllerTest {
             createURLWithPort("/api/root-resources"),
             HttpMethod.GET, entity, RootResourceOutput.class);*/
 
-        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:" + port + "/api/root-resources", String.class);
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:" + serverPort + "/api/root-resources", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
 
         /*RootResourceOutput expected = new RootResourceOutput();
@@ -58,6 +50,6 @@ public class RootResourceControllerTest {
     }
 
     private String createURLWithPort(String uri) {
-        return "http://localhost:" + port + uri;
+        return "http://localhost:" + serverPort + uri;
     }
 }
