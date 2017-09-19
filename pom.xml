@@ -13,13 +13,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.7.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
 
     <modules>
         <module>application</module>
-        <module>library</module>
+        <module>modules/library</module>
     </modules>
 
     <repositories>
@@ -31,29 +30,33 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <properties>
-        <selma.version>1.0</selma.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <java-statsd-client.version>3.1.0</java-statsd-client.version>
         <spring-metrics.version>0.5.1.RELEASE</spring-metrics.version>
-        <jackson-databind.version>2.8.9</jackson-databind.version>
-        <json-path.version>2.4.0</json-path.version>
-        <spring-boot.version>1.5.7.RELEASE</spring-boot.version>
         <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
-        <assertj-core.version>3.8.0</assertj-core.version>
+        <selma.version>1.0</selma.version>
+        <java-statsd-client.version>3.1.0</java-statsd-client.version>
+        <jackson-databind.version>2.8.9</jackson-databind.version>
         <cucumber-java.version>1.2.5</cucumber-java.version>
         <log4j.version>2.8.2</log4j.version>
+        <junit-jupiter.version>5.0.0</junit-jupiter.version>
+        <junit-jupiter-platform.version>1.0.0</junit-jupiter-platform.version>
+        <junit-platform-launcher.version>1.0.0</junit-platform-launcher.version>
+        <junit-platform-runner.version>1.0.0</junit-platform-runner.version>
+        <!--<junit-vintage-engine.version>4.12.0-RC2</junit-vintage-engine.version>-->
+        <!--<junit.platform.version>1.0.0-RC2</junit.platform.version>-->
+        <!--<junit4.version>4.12</junit4.version>-->
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-        <junit-jupiter-engine.version>5.0.0-RC2</junit-jupiter-engine.version>
-        <junit-platform-launcher.version>1.0.0-RC2</junit-platform-launcher.version>
-        <junit-vintage-engine.version>4.12.0-RC2</junit-vintage-engine.version>
-        <junit.platform.version>1.0.0-RC2</junit.platform.version>
-        <junit4.version>4.12</junit4.version>
+        <spring-test-junit5.version>1.0.0</spring-test-junit5.version>
     </properties>
 
     <dependencies>
@@ -75,6 +78,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
         </dependency>
 
         <!-- MongoDB -->
@@ -89,31 +99,25 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit.platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit4.version}</version>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${junit-jupiter-platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -129,7 +133,17 @@
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-vintage-engine.version}</version>
+            <version>4.12.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!--
+                WARNING!!! This is required for since Spring boot 1.5 does not support jUnit5 properly
+                Explanation: https://stackoverflow.com/questions/44526324/spring-testresttemplate-not-autowiring-correctly
+            -->
+            <groupId>com.github.sbrannen</groupId>
+            <artifactId>spring-test-junit5</artifactId>
+            <version>${spring-test-junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Test - Cucumber -->
@@ -139,6 +153,7 @@
             <version>${cucumber-java.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- END:: Test -->
 
 
@@ -203,13 +218,6 @@
         </dependency>
         <!-- END:: RESTful - SpringFox-->
 
-        <!-- Logging - Log4J -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -248,12 +256,7 @@
                         <dependency>
                             <groupId>org.junit.platform</groupId>
                             <artifactId>junit-platform-surefire-provider</artifactId>
-                            <version>1.0.0</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.junit.jupiter</groupId>
-                            <artifactId>junit-jupiter-engine</artifactId>
-                            <version>${junit-jupiter-engine.version}</version>
+                            <version>${junit-jupiter-platform.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>

@@ -22,4 +22,5 @@ public class RootResourceOutput {
     @NotEmpty
     @NotNull
     private String name;
+
 }

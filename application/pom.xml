@@ -6,7 +6,7 @@
 
     <groupId>io.crpdevs.demo.rs</groupId>
     <artifactId>demo-resource-server-application</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>io.crpdevs.demo.rs</groupId>
             <artifactId>demo-resource-server-library</artifactId>
-            <version>${project.parent.version}</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- Lombok -->
         <dependency>

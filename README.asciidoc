@@ -6,16 +6,82 @@ to clients.
 
 ## Documentation
 
-NOT YET
+
+Application requires environment variables to be able to run.
+In test as per development.
+
+To do so, please configure your intelliJ and at `.idea/workspace.xml`
+file find blocks bellow.
+
+IMPORTANT: Don't forget to click on `file -> Invalidate Caches / Restart...`
+in order to reload changes made in `workspace.xml` file.
+
+.To run tests in local
+
+[source,xml]
+....
+[...]
+<configuration default="true" type="JUnit" factoryName="JUnit">
+    [...]
+    <envs>
+        [...]
+    </envs>
+    [...]
+</component>
+[...]
+....
+
+And setup required environment variables:
+
+[source,xml]
+....
+[...]
+<configuration default="true" type="JUnit" factoryName="JUnit">
+    [...]
+    <envs>
+        <env name="ENV_VAR_NAME" value="value" />
+    </envs>
+    [...]
+</component>
+[...]
+....
 
 
-Add following environment variables to your intelliJ:
+.To run the app in Local
 
----
-DEMO_RS_METRICS_PORT
-DEMO_RS_DATASOURCE_HOST
-DEMO_RS_DATASOURCE_PORT
-DEMO_RS_DATASOURCE_DB
-DEMO_RS_DATASOURCE_PASSWORD
-DEMO_RS_DATASOURCE_USERNAME
----
+[source,xml]
+....
+[...]
+<component name="MavenRunner">
+    <option name="environmentProperties">
+        <map>
+            [...]
+        </map>
+    </option>
+</component>
+[...]
+....
+
+And setup required environment variables:
+
+[source,xml]
+....
+[...]
+<component name="MavenRunner">
+    <option name="environmentProperties">
+        <map>
+            <entry key="ENV_VAR_NAME" value="value" />
+        </map>
+    </option>
+</component>
+[...]
+....
+
+
+Both environments contains same ENV VAR names.
+These are defined at `setup/environment_variables.example`
+
+[source,shell,numbered]
+....
+include::setup/environment-variables.example[]
+....
