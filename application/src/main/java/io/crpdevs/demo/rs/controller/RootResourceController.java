@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ResponseHeader;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,7 @@ import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 @RestController
 @RequestMapping(REST_BASE_PATH + "/root-resources")
 @Data
+@Slf4j
 @Api(
     value = REST_BASE_PATH + "/root-resources",
     description = "Endpoint for Root Resource listing"
@@ -81,6 +83,7 @@ public class RootResourceController {
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity findAll() {
+        log.info("GET");
         List<RootResource> rootResources = rootResourceService.findAll();
         List<RootResourceOutput> rootResourceOutputs = rootResourceMapper.mapEntitiesTo(rootResources);
         return ResponseEntity.ok(rootResourceOutputs);
@@ -111,6 +114,7 @@ public class RootResourceController {
         @ApiParam(name = WILDCARD_ATTR_NAME_RESOURCE_ID, value = "ID of RootResource that needs to be fetched",
             required = true)
         @PathVariable(name = WILDCARD_ATTR_NAME_RESOURCE_ID) String id) {
+        log.info("POST");
         return rootResourceService.findOne(id)
             .map(rootResource -> {
                 RootResourceOutput rootResourceOutput = rootResourceMapper.mapEntityTo(rootResource);
