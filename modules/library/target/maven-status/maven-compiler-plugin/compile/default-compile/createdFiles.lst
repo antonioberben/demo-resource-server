@@ -1,0 +1,9 @@
+io/crpdevs/demo/rs/representation/root/RootResourceInput.class
+io/crpdevs/demo/rs/persistence/entity/root/RootResource.class
+io/crpdevs/demo/rs/mapper/root/RootResourceMapperSelmaGeneratedClass.class
+io/crpdevs/demo/rs/util/AutomationConsumer.class
+io/crpdevs/demo/rs/persistence/repository/RootResourceRepository.class
+io/crpdevs/demo/rs/service/RootResourceService.class
+io/crpdevs/demo/rs/mapper/root/RootResourceMapper.class
+io/crpdevs/demo/rs/representation/root/RootResourceOutput.class
+io/crpdevs/demo/rs/persistence/entity/GenericEntity.class
