@@ -55,3 +55,8 @@ logging:
     root: info
     org.springframework.data: info
     # org.springframework.boot.actuate.metrics: TRACE
+
+#logstash
+logstash:
+  host: localhost
+  port: 5000

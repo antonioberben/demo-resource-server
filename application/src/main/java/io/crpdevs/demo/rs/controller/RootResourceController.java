@@ -83,7 +83,7 @@ public class RootResourceController {
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity findAll() {
-        log.info("GET");
+        log.info("This is a Log trace test");
         List<RootResource> rootResources = rootResourceService.findAll();
         List<RootResourceOutput> rootResourceOutputs = rootResourceMapper.mapEntitiesTo(rootResources);
         return ResponseEntity.ok(rootResourceOutputs);
@@ -114,7 +114,6 @@ public class RootResourceController {
         @ApiParam(name = WILDCARD_ATTR_NAME_RESOURCE_ID, value = "ID of RootResource that needs to be fetched",
             required = true)
         @PathVariable(name = WILDCARD_ATTR_NAME_RESOURCE_ID) String id) {
-        log.info("POST");
         return rootResourceService.findOne(id)
             .map(rootResource -> {
                 RootResourceOutput rootResourceOutput = rootResourceMapper.mapEntityTo(rootResource);
