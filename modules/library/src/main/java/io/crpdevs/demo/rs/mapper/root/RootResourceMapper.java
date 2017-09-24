@@ -1,6 +1,8 @@
 package io.crpdevs.demo.rs.mapper.root;
 
 
+import java.util.List;
+
 import fr.xebia.extras.selma.IgnoreMissing;
 import fr.xebia.extras.selma.IoC;
 import fr.xebia.extras.selma.Mapper;
@@ -8,8 +10,6 @@ import fr.xebia.extras.selma.Maps;
 import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
 import io.crpdevs.demo.rs.representation.root.RootResourceInput;
 import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
-
-import java.util.List;
 
 @Mapper(withIoC = IoC.SPRING)
 public interface RootResourceMapper {
