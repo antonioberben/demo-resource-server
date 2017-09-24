@@ -1,7 +1,0 @@
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/persistence/repository/RootResourceRepository.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/persistence/entity/root/RootResource.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/service/RootResourceService.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/mapper/root/RootResourceMapper.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/representation/root/RootResourceOutput.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/representation/root/RootResourceInput.java
-/home/aberben/ibm/projects/demo-resource-server/modules/library/src/main/java/io/crpdevs/demo/rs/persistence/entity/GenericEntity.java

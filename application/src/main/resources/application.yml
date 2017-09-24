@@ -1,10 +1,17 @@
-#default project info followed by actual injected pom-specified values.
-project:
-  name: "Demo"
-  version: 0.0.1
-  description: "Test project"
+info:
+  app:
+    name: @project.title@
+    description: @project.description@
+    encoding: @project.build.sourceEncoding@
+    java.source: @java.version@
+    java.target: @java.version@
+  build:
+    group: @project.groupId@
+    artifact: @project.artifactId@
+    version: @project.version@
 
 server:
+  display-name: @project.title@
   port: ${PORT:8090}
 
 #management endpoints on a separate port
@@ -16,25 +23,8 @@ management:
     mongo:
       enabled: true
 
-security:
-  basic:
-    enabled: false
-
-info:
-  app:
-    encoding: ${project.build.sourceEncoding}
-    java.source: ${java.version}
-    java.target: ${java.version}
-  build:
-    artifact: ${project.artifactId}
-    name: ${project.name}
-    description: ${project.description}
-    version: ${project.version}
-
 #mongodb
 spring:
-  application:
-    name: demo
   data:
     mongodb:
       host: ${DEMO_RS_DATASOURCE_HOST}

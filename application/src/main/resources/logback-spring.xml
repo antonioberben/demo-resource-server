@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <springProperty scope="context" name="logstash-host" source="logstash.host" defaultValue=""/>
+    <springProperty scope="context" name="logstash-port" source="logstash.port" defaultValue=""/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,7 +12,7 @@
 
     <appender name="STASH"
               class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>xxxxx:5555</destination>
+        <destination>${logstash-host:-}:${logstash-port:-}</destination>
 
         <encoder
                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">

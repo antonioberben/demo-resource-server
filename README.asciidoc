@@ -85,3 +85,10 @@ These are defined at `setup/environment_variables.example`
 ....
 include::setup/environment-variables.example[]
 ....
+
+
+Info about the Application:
+localhost:0000/info
+
+Info about the Application health checks:
+localhost:0000/health
