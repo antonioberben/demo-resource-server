@@ -129,7 +129,7 @@ fabric.properties
 /**/*.iml
 
 /application/target
-/library/target
+/modules/library/target
 
 
 ## User defined

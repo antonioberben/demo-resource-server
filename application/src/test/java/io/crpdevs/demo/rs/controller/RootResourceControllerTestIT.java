@@ -1,10 +1,13 @@
 package io.crpdevs.demo.rs.controller;
 
-import io.crpdevs.demo.rs.RSApplication;
-import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
-import io.crpdevs.demo.rs.persistence.repository.RootResourceRepository;
-import io.crpdevs.demo.rs.representation.root.RootResourceInput;
-import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -22,15 +25,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
+import io.crpdevs.demo.rs.RSApplication;
+import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
+import io.crpdevs.demo.rs.persistence.repository.RootResourceRepository;
+import io.crpdevs.demo.rs.representation.root.RootResourceInput;
+import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
 
 
 @ExtendWith(SpringExtension.class)

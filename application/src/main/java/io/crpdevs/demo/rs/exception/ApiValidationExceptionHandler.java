@@ -1,16 +1,17 @@
 package io.crpdevs.demo.rs.exception;
 
-import io.crpdevs.demo.rs.exception.view.ApiExtendedErrorsView;
-import io.crpdevs.demo.rs.exception.view.ApiSimpleErrorsView;
-import io.crpdevs.demo.rs.util.exception.ApiExtendedErrorsViewUtil;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
+import io.crpdevs.demo.rs.exception.view.ApiExtendedErrorsView;
+import io.crpdevs.demo.rs.exception.view.ApiSimpleErrorsView;
+import io.crpdevs.demo.rs.util.exception.ApiExtendedErrorsViewUtil;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j

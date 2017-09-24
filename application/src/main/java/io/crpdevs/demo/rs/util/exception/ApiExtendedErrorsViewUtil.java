@@ -1,17 +1,19 @@
 package io.crpdevs.demo.rs.util.exception;
 
-import io.crpdevs.demo.rs.exception.view.ApiExtendedErrorsView;
-import io.crpdevs.demo.rs.exception.error.ApiFieldError;
-import io.crpdevs.demo.rs.exception.error.ApiGlobalError;
+import static java.util.stream.Collectors.toList;
+
+import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
-import javax.validation.ConstraintViolation;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.stream.Collectors.toList;
+import io.crpdevs.demo.rs.exception.error.ApiFieldError;
+import io.crpdevs.demo.rs.exception.error.ApiGlobalError;
+import io.crpdevs.demo.rs.exception.view.ApiExtendedErrorsView;
 
 public class ApiExtendedErrorsViewUtil {
 

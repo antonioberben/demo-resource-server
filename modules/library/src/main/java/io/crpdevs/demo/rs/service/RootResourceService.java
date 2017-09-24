@@ -1,13 +1,14 @@
 package io.crpdevs.demo.rs.service;
 
-import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
-import io.crpdevs.demo.rs.persistence.repository.RootResourceRepository;
-import lombok.AllArgsConstructor;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
+import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
+import io.crpdevs.demo.rs.persistence.repository.RootResourceRepository;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Component
