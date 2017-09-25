@@ -64,6 +64,7 @@
         <!--<junit4.version>4.12</junit4.version>-->
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <spring-test-junit5.version>1.0.0</spring-test-junit5.version>
+        <prometheus.simpleclient.version>0.0.26</prometheus.simpleclient.version>
     </properties>
 
     <dependencies>
@@ -248,6 +249,25 @@
         </dependency>
         <!-- END:: Logging - ELK-->
 
+
+
+        <!-- BEGIN:: Metrics - Prometheus -->
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient_spring_boot</artifactId>
+            <version>${prometheus.simpleclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient_servlet</artifactId>
+            <version>${prometheus.simpleclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient_hotspot</artifactId>
+            <version>${prometheus.simpleclient.version}</version>
+        </dependency>
+        <!-- END:: Metrics - Prometheus -->
     </dependencies>
 
     <build>

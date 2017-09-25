@@ -32,12 +32,6 @@ spring:
       database: ${DEMO_RS_DATASOURCE_DB}
       password: ${DEMO_RS_DATASOURCE_PASSWORD}
       username: ${DEMO_RS_DATASOURCE_USERNAME}
-#  metrics:
-#    export:
-#      statsd:
-#        prefix: rs-demo-${HOSTNAME}
-#        host: ${DEMO_RS_METRICS_HOST}
-#        port: ${DEMO_RS_METRICS_PORT}
 
 #logging
 logging:

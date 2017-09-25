@@ -10,6 +10,7 @@ import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -33,6 +34,7 @@ import io.crpdevs.demo.rs.persistence.entity.root.RootResource;
 import io.crpdevs.demo.rs.representation.root.RootResourceInput;
 import io.crpdevs.demo.rs.representation.root.RootResourceOutput;
 import io.crpdevs.demo.rs.service.RootResourceService;
+import io.prometheus.client.Counter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -62,6 +64,13 @@ public class RootResourceController {
     @Autowired
     private RootResourceService rootResourceService;
 
+    private static Random random = new Random();
+
+    private static final Counter requestTotal = Counter.build()
+        .name("my_sample_counter")
+        .labelNames("status")
+        .help("A simple Counter to illustrate custom Counters in Spring Boot and Prometheus").register();
+
     /**
      * Find all resources.
      *
@@ -86,6 +95,11 @@ public class RootResourceController {
     )
     public ResponseEntity findAll() {
         log.info("This is a Log trace test");
+        if (random.nextInt(2) > 0) {
+            requestTotal.labels("success").inc();
+        } else {
+            requestTotal.labels("error").inc();
+        }
         List<RootResource> rootResources = rootResourceService.findAll();
         List<RootResourceOutput> rootResourceOutputs = rootResourceMapper.mapEntitiesTo(rootResources);
         return ResponseEntity.ok(rootResourceOutputs);
