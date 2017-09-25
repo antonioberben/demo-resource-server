@@ -92,3 +92,7 @@ localhost:0000/info
 
 Info about the Application health checks:
 localhost:0000/health
+
+### Keycloak
+
+http://blog.keycloak.org/2017/05/easily-secure-your-spring-boot.html

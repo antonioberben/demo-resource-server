@@ -9,6 +9,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,6 +19,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,8 +87,10 @@ public class RootResourceController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity findAll() {
-        log.info("This is a Log trace test");
+    public ResponseEntity findAll(Authentication authentication) {
+        ((UserDetails) authentication.getDetails()).getAuthorities().stream()
+                .forEach(e -> log.info(e.getAuthority()));
+        log.info(((Principal) authentication.getPrincipal()).getName());
         List<RootResource> rootResources = rootResourceService.findAll();
         List<RootResourceOutput> rootResourceOutputs = rootResourceMapper.mapEntitiesTo(rootResources);
         return ResponseEntity.ok(rootResourceOutputs);

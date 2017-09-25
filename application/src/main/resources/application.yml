@@ -50,3 +50,11 @@ logging:
 logstash:
   host: localhost
   port: 5000
+
+#Keycloak
+keycloak:
+  auth-server-url: http://localhost:19010/auth
+  realm: demo
+  public-client: true
+  resource: demo-resource-server
+  principal-attribute: preferred_username
