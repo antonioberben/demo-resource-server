@@ -58,3 +58,4 @@ keycloak:
   public-client: true
   resource: demo-resource-server
   principal-attribute: preferred_username
+  use-resource-role-mappings: true
