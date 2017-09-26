@@ -64,6 +64,7 @@
         <!--<junit4.version>4.12</junit4.version>-->
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <spring-test-junit5.version>1.0.0</spring-test-junit5.version>
+        <keycloak.version>3.2.1.Final</keycloak.version>
     </properties>
 
     <dependencies>
@@ -103,6 +104,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!-- END:: Spring boot starters -->
 
@@ -248,7 +255,27 @@
         </dependency>
         <!-- END:: Logging - ELK-->
 
+        <!--BEGIN:: Authorization Server - Keycloak-->
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
+            <version>${keycloak.version}</version>
+        </dependency>
+        <!--END:: Authorization Server - Keycloak-->
+
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
