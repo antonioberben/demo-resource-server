@@ -58,4 +58,17 @@ keycloak:
   public-client: true
   resource: demo-resource-server
   principal-attribute: preferred_username
-  use-resource-role-mappings: true
+  #use-resource-role-mappings: true
+
+#Security
+#security:
+#  require-ssl: true
+#  ssl:
+#    key-store: keystore.jks
+#    key-store-password: password
+#    key-alias: demo-application
+
+#Show Case: OpenIdConnect
+oidc-show-case:
+  #remote-app-url: https://${OIDC_SHOWCASE_APPLICATION_HOST}:${OIDC_SHOWCASE_APPLICATION_PORT}
+  remote-app-url: https://localhost:1111
